@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/co-orbital_asteroid.png-f4ad455a56042e7bf9061ba43e6fcdde.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://assets/asteroids/co-orbital_asteroid.png"
+dest_files=[ "res://.import/co-orbital_asteroid.png-f4ad455a56042e7bf9061ba43e6fcdde.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

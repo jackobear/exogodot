@@ -1,0 +1,459 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://assets/habitable-worlds/lophus.png" type="Texture" id=1]
+[ext_resource path="res://assets/planets/jupiter.png" type="Texture" id=2]
+[ext_resource path="res://assets/moons/mene.png" type="Texture" id=3]
+[ext_resource path="res://assets/actions/space_fighter.png" type="Texture" id=4]
+[ext_resource path="res://assets/dwarf-planets/hypnos.png" type="Texture" id=5]
+[ext_resource path="res://assets/factions/rock_hoppers.png" type="Texture" id=6]
+[ext_resource path="res://assets/actions/space_truckin.png" type="Texture" id=7]
+[ext_resource path="res://assets/card-backs/2.png" type="Texture" id=8]
+[ext_resource path="res://assets/stars/sol.png" type="Texture" id=9]
+[ext_resource path="res://assets/reference-cards/space_market.png" type="Texture" id=10]
+[ext_resource path="res://assets/symbols/water.png" type="Texture" id=11]
+[ext_resource path="res://assets/symbols/metal.png" type="Texture" id=12]
+[ext_resource path="res://assets/symbols/food.png" type="Texture" id=13]
+[ext_resource path="res://assets/symbols/actions.png" type="Texture" id=14]
+[ext_resource path="res://assets/symbols/fuel.png" type="Texture" id=15]
+[ext_resource path="res://assets/symbols/coin.png" type="Texture" id=16]
+[ext_resource path="res://assets/symbols/victory-points.png" type="Texture" id=17]
+[ext_resource path="res://Quicksand_Book.otf" type="DynamicFontData" id=18]
+[ext_resource path="res://Player.gd" type="Script" id=19]
+[ext_resource path="res://FactionKinematic.gd" type="Script" id=20]
+
+[sub_resource type="DynamicFont" id=1]
+size = 150
+font_data = ExtResource( 18 )
+
+[node name="Stage" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="."]
+margin_right = 640.0
+margin_bottom = 360.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopRow" type="HBoxContainer" parent="VBox"]
+margin_right = 640.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Player" type="Control" parent="VBox/TopRow"]
+margin_right = 210.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 19 )
+
+[node name="FactionButton" type="Button" parent="VBox/TopRow/Player"]
+margin_right = 168.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FactionKinematic" type="KinematicBody2D" parent="VBox/TopRow/Player"]
+script = ExtResource( 20 )
+
+[node name="FactionArt" type="Sprite" parent="VBox/TopRow/Player/FactionKinematic"]
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1130, 520 )
+
+[node name="Counters" type="Node2D" parent="VBox/TopRow/Player"]
+position = Vector2( -4.71936, 27.3724 )
+
+[node name="CounterContainer" type="HBoxContainer" parent="VBox/TopRow/Player/Counters"]
+margin_left = 4.0
+margin_top = 35.0
+margin_right = 992.0
+margin_bottom = 202.0
+rect_scale = Vector2( 0.2, 0.2 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalContainer" type="CenterContainer" parent="VBox/TopRow/Player/Counters/CounterContainer"]
+margin_right = 150.0
+margin_bottom = 167.0
+
+[node name="MetalArt" type="TextureRect" parent="VBox/TopRow/Player/Counters/CounterContainer/MetalContainer"]
+margin_top = 8.0
+margin_right = 150.0
+margin_bottom = 158.0
+texture = ExtResource( 12 )
+
+[node name="MetalCounter" type="Label" parent="VBox/TopRow/Player/Counters/CounterContainer/MetalContainer"]
+margin_left = 29.0
+margin_top = 16.0
+margin_right = 121.0
+margin_bottom = 151.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 0
+text = "3"
+
+[node name="FoodContainer" type="CenterContainer" parent="VBox/TopRow/Player/Counters/CounterContainer"]
+margin_left = 154.0
+margin_right = 304.0
+margin_bottom = 167.0
+rect_pivot_offset = Vector2( -1607.53, 590.373 )
+
+[node name="FoodArt" type="TextureRect" parent="VBox/TopRow/Player/Counters/CounterContainer/FoodContainer"]
+margin_top = 8.0
+margin_right = 150.0
+margin_bottom = 158.0
+texture = ExtResource( 13 )
+
+[node name="FoodCounter" type="Label" parent="VBox/TopRow/Player/Counters/CounterContainer/FoodContainer"]
+margin_left = 29.0
+margin_top = 16.0
+margin_right = 121.0
+margin_bottom = 151.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 0
+text = "3"
+
+[node name="FuelContainer" type="CenterContainer" parent="VBox/TopRow/Player/Counters/CounterContainer"]
+margin_left = 308.0
+margin_right = 458.0
+margin_bottom = 167.0
+
+[node name="FuelArt" type="TextureRect" parent="VBox/TopRow/Player/Counters/CounterContainer/FuelContainer"]
+margin_top = 8.0
+margin_right = 150.0
+margin_bottom = 158.0
+texture = ExtResource( 15 )
+
+[node name="FuelCounter" type="Label" parent="VBox/TopRow/Player/Counters/CounterContainer/FuelContainer"]
+margin_left = 29.0
+margin_top = 16.0
+margin_right = 121.0
+margin_bottom = 151.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 0
+text = "3"
+
+[node name="WaterContainer" type="CenterContainer" parent="VBox/TopRow/Player/Counters/CounterContainer"]
+margin_left = 462.0
+margin_right = 612.0
+margin_bottom = 167.0
+
+[node name="WaterArt" type="TextureRect" parent="VBox/TopRow/Player/Counters/CounterContainer/WaterContainer"]
+margin_top = 8.0
+margin_right = 150.0
+margin_bottom = 158.0
+texture = ExtResource( 11 )
+
+[node name="WaterCounter" type="Label" parent="VBox/TopRow/Player/Counters/CounterContainer/WaterContainer"]
+margin_left = 29.0
+margin_top = 16.0
+margin_right = 121.0
+margin_bottom = 151.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 1
+text = "3"
+
+[node name="CoinContainer" type="CenterContainer" parent="VBox/TopRow/Player/Counters/CounterContainer"]
+margin_left = 616.0
+margin_right = 716.0
+margin_bottom = 167.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CoinArt" type="TextureRect" parent="VBox/TopRow/Player/Counters/CounterContainer/CoinContainer"]
+margin_top = 33.0
+margin_right = 100.0
+margin_bottom = 133.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 16 )
+
+[node name="CoinCounter" type="Label" parent="VBox/TopRow/Player/Counters/CounterContainer/CoinContainer"]
+margin_left = 4.0
+margin_top = 16.0
+margin_right = 96.0
+margin_bottom = 151.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 1
+text = "3"
+
+[node name="VPContainer" type="CenterContainer" parent="VBox/TopRow/Player/Counters/CounterContainer"]
+margin_left = 720.0
+margin_right = 820.0
+margin_bottom = 167.0
+
+[node name="VPsArt" type="TextureRect" parent="VBox/TopRow/Player/Counters/CounterContainer/VPContainer"]
+margin_top = 33.0
+margin_right = 100.0
+margin_bottom = 133.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 17 )
+
+[node name="VPCounter" type="Label" parent="VBox/TopRow/Player/Counters/CounterContainer/VPContainer"]
+margin_left = 4.0
+margin_top = 16.0
+margin_right = 96.0
+margin_bottom = 151.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 0
+text = "3"
+
+[node name="CardsInPlayContainer" type="CenterContainer" parent="VBox/TopRow/Player/Counters/CounterContainer"]
+margin_left = 824.0
+margin_right = 916.0
+margin_bottom = 167.0
+
+[node name="CardsInPlayArt" type="TextureRect" parent="VBox/TopRow/Player/Counters/CounterContainer/CardsInPlayContainer"]
+margin_left = 6.0
+margin_top = 33.0
+margin_right = 86.0
+margin_bottom = 133.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 14 )
+
+[node name="CardsInPlayCounter" type="Label" parent="VBox/TopRow/Player/Counters/CounterContainer/CardsInPlayContainer"]
+margin_top = 16.0
+margin_right = 92.0
+margin_bottom = 151.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 0
+text = "3"
+
+[node name="HandContainer" type="CenterContainer" parent="VBox/TopRow/Player/Counters/CounterContainer"]
+margin_left = 920.0
+margin_right = 1012.0
+margin_bottom = 167.0
+
+[node name="HandArt" type="TextureRect" parent="VBox/TopRow/Player/Counters/CounterContainer/HandContainer"]
+margin_left = 6.0
+margin_top = 33.0
+margin_right = 86.0
+margin_bottom = 133.0
+texture = ExtResource( 14 )
+
+[node name="HandCounter" type="Label" parent="VBox/TopRow/Player/Counters/CounterContainer/HandContainer"]
+margin_top = 16.0
+margin_right = 92.0
+margin_bottom = 151.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 0
+text = "3"
+
+[node name="Market" type="Control" parent="VBox/TopRow"]
+margin_left = 214.0
+margin_right = 425.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarketArt" type="TextureRect" parent="VBox/TopRow/Market"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -105.5
+margin_right = 1619.5
+margin_bottom = 1125.0
+rect_scale = Vector2( 0.08, 0.08 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Asteroids" type="Control" parent="VBox/TopRow"]
+margin_left = 429.0
+margin_right = 640.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AsteroidDeck" type="TextureRect" parent="VBox/TopRow/Asteroids"]
+margin_right = 825.0
+margin_bottom = 1125.0
+rect_scale = Vector2( 0.08, 0.08 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterScroll" type="ScrollContainer" parent="VBox"]
+margin_top = 104.0
+margin_right = 640.0
+margin_bottom = 255.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="CenterRow" type="HBoxContainer" parent="VBox/CenterScroll"]
+margin_right = 640.0
+margin_bottom = 151.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="VBox/CenterScroll/CenterRow"]
+margin_right = 124.0
+margin_bottom = 151.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="VBox/CenterScroll/CenterRow/CenterContainer"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StarArt" type="TextureRect" parent="VBox/CenterScroll/CenterRow/CenterContainer/Control"]
+margin_left = 4.0
+margin_right = 829.0
+margin_bottom = 1125.0
+rect_scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="VBox/CenterScroll/CenterRow"]
+margin_left = 128.0
+margin_right = 253.0
+margin_bottom = 151.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HabitableWorldArt" type="TextureRect" parent="VBox/CenterScroll/CenterRow/Control2"]
+margin_right = 825.0
+margin_bottom = 1125.0
+rect_scale = Vector2( 0.1, 0.1 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control3" type="Control" parent="VBox/CenterScroll/CenterRow"]
+margin_left = 257.0
+margin_right = 382.0
+margin_bottom = 151.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DwarfPlanetArt" type="TextureRect" parent="VBox/CenterScroll/CenterRow/Control3"]
+margin_right = 825.0
+margin_bottom = 1125.0
+rect_scale = Vector2( 0.1, 0.1 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control4" type="Control" parent="VBox/CenterScroll/CenterRow"]
+margin_left = 386.0
+margin_right = 511.0
+margin_bottom = 151.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MoonArt" type="TextureRect" parent="VBox/CenterScroll/CenterRow/Control4"]
+margin_right = 825.0
+margin_bottom = 1125.0
+rect_scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control5" type="Control" parent="VBox/CenterScroll/CenterRow"]
+margin_left = 515.0
+margin_right = 640.0
+margin_bottom = 151.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PlanetArt" type="TextureRect" parent="VBox/CenterScroll/CenterRow/Control5"]
+margin_right = 825.0
+margin_bottom = 1125.0
+rect_scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BottomRow" type="HBoxContainer" parent="VBox"]
+margin_top = 259.0
+margin_right = 640.0
+margin_bottom = 360.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Hand" type="Control" parent="VBox/BottomRow"]
+margin_right = 318.0
+margin_bottom = 101.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HandArt" type="TextureRect" parent="VBox/BottomRow/Hand"]
+margin_right = 825.0
+margin_bottom = 1125.0
+rect_scale = Vector2( 0.1, 0.1 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardsInPlay" type="Control" parent="VBox/BottomRow"]
+margin_left = 322.0
+margin_right = 640.0
+margin_bottom = 101.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CardsInPlayArt" type="TextureRect" parent="VBox/BottomRow/CardsInPlay"]
+margin_right = 1654.0
+margin_bottom = 1125.0
+rect_scale = Vector2( 0.1, 0.1 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_down" from="VBox/TopRow/Player/FactionButton" to="VBox/TopRow/Player" method="_on_FactionButton_button_down"]
+[connection signal="button_down" from="VBox/TopRow/Player/FactionButton" to="VBox/TopRow/Player/FactionKinematic" method="_on_FactionButton_button_down"]
